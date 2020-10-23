@@ -1,7 +1,6 @@
+import json
 from datetime import timedelta
 from datetime import datetime
-
-
 
 clave_num = 7
 hour_offset = 7
@@ -9,6 +8,9 @@ now = datetime.today()
 confPath = 'conf.ini'
 bucket_name = 'obs-ydy1'
 folder_path = 'Service/ZyRecord/'
+tresh = 0.01
+padding = 120
+
 
 class AutoClaveBreakStorage:
     def __init__(self, obs_client, np_data_list):
@@ -112,7 +114,7 @@ class AutoClaveBreakStorage:
                     self.__new_record(clave_id, today_initial.timestamp(), offset_time)
                     latest_event_list.append(int(today_initial.timestamp()))
 
-        return latest_event_list
+        return latest_event_list, today_folder_path
 
     def __new_record(self, clave_id, today_initial, offset_time):
         today_folder_path = folder_path + offset_time.date().isoformat() + '/'
@@ -123,5 +125,100 @@ class AutoClaveBreakStorage:
             print('OBS putContent:errorCode:', resp.errorCode)
             print('OBS putContent:errorMessage:', resp.errorMessage)
 
+    def __data_refresh(self, latest_event_list, today_folder_path):
+
+        if len(latest_event_list) == 7:
+            for clave_id in range(1, clave_num + 1):
+                start_time = latest_event_list[clave_id - 1]
+                prefix = today_folder_path + str(clave_id) + 'XING' + str(start_time) + 'Y'
+                np_data = self.np_data_list[clave_id - 1]
+
+                start_index = 0
+
+                while np_data[:, start_index][0] < start_time and start_index < np_data.shape[1] - 1:
+                    start_index = start_index + 1
+
+                end_index = start_index
+
+                time_list = []
+                in_temp_list = []
+                out_temp_list = []
+                in_press_list = []
+                state_list = []
+
+                safe = True
+                interval_1 = True
+                interval_2 = False
+                interval_3 = False
+
+                while safe and (interval_1 or interval_2 or interval_3):
+                    time = int(np_data[:, end_index][0])
+                    in_temp_list.append({'t': time, 'v': np_data[:, end_index][1]})
+                    out_temp_list.append({'t': time, 'v': np_data[:, end_index][2]})
+                    in_press_list.append({'t': time, 'v': np_data[:, end_index][3]})
+                    state_list.append({'t': time, 'v': np_data[:, end_index][4]})
+                    end_index = end_index + 1
+
+                    safe = end_index < np_data.shape[1]
+                    interval_1 = end_index < start_index + 2 * padding
+                    interval_2 = not interval_1 and np_data[:, end_index][3] >= tresh
+                    interval_3 = not (interval_1 or interval_2) and end_index < np_data.shape[1] - padding
+
+                end_time = np_data[:, end_index][0]
+                record_dict = {'FuId': clave_id,
+                               'startTime': start_time,
+                               'endTime': end_time,
+                               'stateTime': 1,
+                               'data': {'pressure': in_press_list, 'tempIn': in_temp_list, 'tempOut': out_temp_list,
+                                        'state': state_list}}
+                record_json = json.dumps(record_dict)
+
+                # 真正到末尾了
+                if end_index + padding <= np_data.shape[1]:
+                    end_time = end_time + padding - 1
+                    fin_prefix = today_folder_path + str(clave_id) + 'XFIN' + str(start_time) + 'Y' + str(end_time)
+                    resp = self.obs_client.putContent(bucket_name, fin_prefix, str(record_json))
+                    if resp.status < 300:
+                        ing_prefix = today_folder_path + str(clave_id) + 'XING' + str(end_time) + 'Y'
+                        resp = self.obs_client.putContent(bucket_name, ing_prefix, str(0))
+                        if resp.status < 300:
+                            resp = self.obs_client.deleteObject(bucket_name, prefix)
+                            if resp.status < 300:
+                                return 1
+                            else:
+                                print('OBS deleteObject:errorCode:', resp.errorCode)
+                                print('OBS deleteObject:errorMessage:', resp.errorMessage)
+                                return 0
+                        else:
+                            print('OBS putContent:errorCode:', resp.errorCode)
+                            print('OBS putContent:errorMessage:', resp.errorMessage)
+                            return 0
+                    else:
+                        print('OBS putContent:errorCode:', resp.errorCode)
+                        print('OBS putContent:errorMessage:', resp.errorMessage)
+                        return 0
+                else:
+                    resp = self.obs_client.deleteObject(bucket_name, prefix)
+                    if resp.status < 300:
+                        resp = self.obs_client.putContent(bucket_name, prefix, str(record_json))
+                        if resp.status < 300:
+                            return 1
+                        else:
+                            print('OBS putContent:errorCode:', resp.errorCode)
+                            print('OBS putContent:errorMessage:', resp.errorMessage)
+                            return 0
+                    else:
+                        print('OBS deleteObject:errorCode:', resp.errorCode)
+                        print('OBS deleteObject:errorMessage:', resp.errorMessage)
+                        return 0
+        else:
+            return 0
+
     def break_storage_process(self):
-        latest_event_list = self.__folder_init()
+        if len(self.np_data_list) == 7:
+            latest_event_list, today_folder_path = self.__folder_init()
+            resp = self.__data_refresh(latest_event_list, today_folder_path)
+
+            return resp
+        else:
+            return 0
