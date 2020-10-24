@@ -59,8 +59,8 @@ def auto_clave_data_convert(data_json, obs_client):
                     state_list.append(state)
 
                     rec_dict = {'time': time, 'inTemp': in_temp,
-                               'outTemp': out_temp, 'inPress': in_press,
-                               'state': state}
+                                'outTemp': out_temp, 'inPress': in_press,
+                                'state': state}
 
                     record_dict.append(rec_dict)
 

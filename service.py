@@ -35,9 +35,7 @@ def job():
     obs_client = new_obs_client()
     real_time_data_pool = RealTimeDataPool(obs_client)
 
-
-
-    #蒸压釜过程
+    # 蒸压釜过程
     np_data_list = real_time_data_pool.auto_clave_process(modbus_record)
     break_storage = AutoClaveBreakStorage(obs_client, np_data_list)
     resp = break_storage.break_storage_process()

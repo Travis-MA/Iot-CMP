@@ -140,7 +140,6 @@ class AutoClaveBreakStorage:
 
                 end_index = start_index
 
-                time_list = []
                 in_temp_list = []
                 out_temp_list = []
                 in_press_list = []
