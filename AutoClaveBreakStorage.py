@@ -218,6 +218,6 @@ class AutoClaveBreakStorage:
             latest_event_list, today_folder_path = self.__folder_init()
             resp = self.__data_refresh(latest_event_list, today_folder_path)
 
-            return resp
+            return resp, now
         else:
             return 0

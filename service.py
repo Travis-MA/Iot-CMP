@@ -38,7 +38,7 @@ def job():
     # 蒸压釜过程
     np_data_list = real_time_data_pool.auto_clave_process(modbus_record)
     break_storage = AutoClaveBreakStorage(obs_client, np_data_list)
-    resp = break_storage.break_storage_process()
+    resp, now = break_storage.break_storage_process()
 
 
 if para == 1:
