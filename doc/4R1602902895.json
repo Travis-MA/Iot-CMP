@@ -1,0 +1,158 @@
+{
+  "FuId": 4,
+  "startTime": 1602889204,
+  "endTime": 1602905536,
+  "recordTime": 12,
+  "sampleNum": 2400,
+  "devInput": "正常",
+  "sensorInput": "正常",
+
+  "stateInfo": {
+    "type": 1,
+    "state1": {
+      "name": "压力1",
+      "startIndex": 10,
+      "endIndex": 50,
+      "startTime": 10,
+      "endTime": 10,
+      "sensorMean": 10,
+      "sensorVar": 10,
+      "deltaInPress": 10,
+      "deltaInTemp": 10,
+      "deltaOutTemp": 10
+    },
+    "state2": {
+      "name": "压力2",
+      "startIndex": 10,
+      "endIndex": 50,
+      "startTime": 10,
+      "endTime": 10,
+      "sensorMean": 10,
+      "sensorVar": 10,
+      "deltaInPress": 10,
+      "deltaInTemp": 10,
+      "deltaOutTemp": 10
+    },
+    "state3": {
+      "name": "压力3",
+      "startIndex": 10,
+      "endIndex": 50,
+      "startTime": 10,
+      "endTime": 10,
+      "sensorMean": 10,
+      "sensorVar": 10,
+      "deltaInPress": 10,
+      "deltaInTemp": 10,
+      "deltaOutTemp": 10
+    },
+    "state4": {
+      "name": "压力4",
+      "startIndex": 10,
+      "endIndex": 50,
+      "startTime": 10,
+      "endTime": 10,
+      "sensorMean": 10,
+      "sensorVar": 10,
+      "deltaInPress": 10,
+      "deltaInTemp": 10,
+      "deltaOutTemp": 10
+    },
+    "state5": {
+      "name": "压力5",
+      "startIndex": 10,
+      "endIndex": 50,
+      "startTime": 10,
+      "endTime": 10,
+      "sensorMean": 10,
+      "sensorVar": 10,
+      "deltaInPress": 10,
+      "deltaInTemp": 10,
+      "deltaOutTemp": 10
+    },
+    "state6": {
+      "name": "压力6",
+      "startIndex": 10,
+      "endIndex": 50,
+      "startTime": 10,
+      "endTime": 10,
+      "sensorMean": 10,
+      "sensorVar": 10,
+      "deltaInPress": 10,
+      "deltaInTemp": 10,
+      "deltaOutTemp": 10
+    },
+    "state7": {
+      "name": "压力7",
+      "startIndex": 10,
+      "endIndex": 50,
+      "startTime": 10,
+      "endTime": 10,
+      "sensorMean": 10,
+      "sensorVar": 10,
+      "deltaInPress": 10,
+      "deltaInTemp": 10,
+      "deltaOutTemp": 10
+    },
+    "state8": {
+      "name": "压力8",
+      "startIndex": 10,
+      "endIndex": 50,
+      "startTime": 10,
+      "endTime": 10,
+      "sensorMean": 10,
+      "sensorVar": 10,
+      "deltaInPress": 10,
+      "deltaInTemp": 10,
+      "deltaOutTemp": 10
+    },
+    "state9": {
+      "name": "压力9",
+      "startIndex": 10,
+      "endIndex": 50,
+      "startTime": 10,
+      "endTime": 10,
+      "sensorMean": 10,
+      "sensorVar": 10,
+      "deltaInPress": 10,
+      "deltaInTemp": 10,
+      "deltaOutTemp": 10
+    },
+    "state10": {
+      "name": "压力10",
+      "startIndex": 10,
+      "endIndex": 50,
+      "startTime": 10,
+      "endTime": 10,
+      "sensorMean": 10,
+      "sensorVar": 10,
+      "deltaInPress": 10,
+      "deltaInTemp": 10,
+      "deltaOutTemp": 10
+    },
+    "state11": {
+      "name": "压力11",
+      "startIndex": 10,
+      "endIndex": 50,
+      "startTime": 10,
+      "endTime": 10,
+      "sensorMean": 10,
+      "sensorVar": 10,
+      "deltaInPress": 10,
+      "deltaInTemp": 10,
+      "deltaOutTemp": 10
+    },
+    "state12": {
+      "name": "压力12",
+      "startIndex": 10,
+      "endIndex": 50,
+      "startTime": 10,
+      "endTime": 10,
+      "sensorMean": 10,
+      "sensorVar": 10,
+      "deltaInPress": 10,
+      "deltaInTemp": 10,
+      "deltaOutTemp": 10
+    }
+  }
+
+}
