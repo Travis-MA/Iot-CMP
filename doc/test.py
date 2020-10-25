@@ -1,3 +1,6 @@
+
+# !/usr/bin/python
+# -*- coding:utf-8 -*-
 import json
 
 load_dict = {}
@@ -36,9 +39,12 @@ load_dict2 = {}
 with open("4R1602902895.json",'r') as load_f:
     load_dict2 = json.load(load_f)
 
+load_dict2["devInput"] = "正常"
+load_dict2["sensorInput"] = "正常"
 load_dict2["startTime"] = 1602902895
 load_dict2["endTime"] = 1602943935
-load_dict2["sampNum"] = len(state)
+load_dict2["recordTime"] = 1602943935-1602902895
+load_dict2["sampleNum"] = len(state)
 pre_state = -1
 info = load_dict2["stateInfo"]
 cnt = 0
@@ -58,6 +64,8 @@ for rec in state:
     cnt = cnt + 1
     if(cnt > len(state)):
         break
+
+string = json.dumps(load_dict2)
 with open("4R1602902895.json","w") as f:
-    json.dump(load_dict2,f)
+    f.write(string)
     print("加载入文件完成...")

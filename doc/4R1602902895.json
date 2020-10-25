@@ -2,13 +2,13 @@
   "FuId": 4,
   "startTime": 1602902895,
   "endTime": 1602943935,
-  "recordTime": 12,
-  "sampleNum": 2400,
-  "devInput": "\u59dd\uff45\u7236",
-  "sensorInput": "\u59dd\uff45\u7236",
+  "recordTime": 41040,
+  "sampleNum": 505,
+  "devInput": "\u6b63\u5e38",
+  "sensorInput": "\u6b63\u5e38",
   "stateInfo": {
     "type": 1,
-    "state0": {
+    "state": [{
       "name": "\u9358\u5b2a\u59cf1",
       "startIndex": 0,
       "endIndex": 16,
@@ -20,7 +20,7 @@
       "deltaInTemp": 10,
       "deltaOutTemp": 10
     },
-    "state1": {
+    {
       "name": "\u9358\u5b2a\u59cf1",
       "startIndex": 17,
       "endIndex": 32,
@@ -32,7 +32,7 @@
       "deltaInTemp": 10,
       "deltaOutTemp": 10
     },
-    "state2": {
+    {
       "name": "\u9358\u5b2a\u59cf2",
       "startIndex": 33,
       "endIndex": 47,
@@ -44,7 +44,7 @@
       "deltaInTemp": 10,
       "deltaOutTemp": 10
     },
-    "state3": {
+    {
       "name": "\u9358\u5b2a\u59cf3",
       "startIndex": 48,
       "endIndex": 104,
@@ -56,7 +56,7 @@
       "deltaInTemp": 10,
       "deltaOutTemp": 10
     },
-    "state4": {
+    {
       "name": "\u9358\u5b2a\u59cf4",
       "startIndex": 105,
       "endIndex": 135,
@@ -68,7 +68,7 @@
       "deltaInTemp": 10,
       "deltaOutTemp": 10
     },
-    "state5": {
+    {
       "name": "\u9358\u5b2a\u59cf5",
       "startIndex": 136,
       "endIndex": 155,
@@ -80,7 +80,7 @@
       "deltaInTemp": 10,
       "deltaOutTemp": 10
     },
-    "state6": {
+    {
       "name": "\u9358\u5b2a\u59cf6",
       "startIndex": 156,
       "endIndex": 204,
@@ -92,7 +92,7 @@
       "deltaInTemp": 10,
       "deltaOutTemp": 10
     },
-    "state7": {
+    {
       "name": "\u9358\u5b2a\u59cf7",
       "startIndex": 205,
       "endIndex": 257,
@@ -104,7 +104,7 @@
       "deltaInTemp": 10,
       "deltaOutTemp": 10
     },
-    "state8": {
+    {
       "name": "\u9358\u5b2a\u59cf8",
       "startIndex": 258,
       "endIndex": 295,
@@ -116,7 +116,7 @@
       "deltaInTemp": 10,
       "deltaOutTemp": 10
     },
-    "state9": {
+    {
       "name": "\u9358\u5b2a\u59cf9",
       "startIndex": 296,
       "endIndex": 348,
@@ -128,7 +128,7 @@
       "deltaInTemp": 10,
       "deltaOutTemp": 10
     },
-    "state10": {
+    {
       "name": "\u9358\u5b2a\u59cf10",
       "startIndex": 349,
       "endIndex": 399,
@@ -140,7 +140,7 @@
       "deltaInTemp": 10,
       "deltaOutTemp": 10
     },
-    "state11": {
+    {
       "name": "\u9358\u5b2a\u59cf11",
       "startIndex": 400,
       "endIndex": 452,
@@ -152,10 +152,10 @@
       "deltaInTemp": 10,
       "deltaOutTemp": 10
     },
-    "state12": {
+    {
       "name": "\u9358\u5b2a\u59cf12",
       "startIndex": 453,
-      "endIndex": 50,
+      "endIndex": 504,
       "startTime": 1602940815.0,
       "endTime": 10,
       "sensorMean": 10,
@@ -163,19 +163,7 @@
       "deltaInPress": 10,
       "deltaInTemp": 10,
       "deltaOutTemp": 10
-    },
-    "state13": {
-      "name": "\u9358\u5b2a\u59cf12",
-      "startIndex": 10,
-      "endIndex": 50,
-      "startTime": 10,
-      "endTime": 10,
-      "sensorMean": 10,
-      "sensorVar": 10,
-      "deltaInPress": 10,
-      "deltaInTemp": 10,
-      "deltaOutTemp": 10
     }
-  },
-  "sampNum": 505
+    ]
+  }
 }
