@@ -54,6 +54,8 @@ for rec in state:
         pre_state = state_id
         t = rec["t"]
         sinf = info["state"+str(state_id)]
+        if state_id == 12:
+            sinf["endTime"] = load_dict2["endTime"]
         sinf["startTime"] = t
         sinf["startIndex"] = cnt
         if state_id > 0:
