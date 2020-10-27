@@ -1,15 +1,25 @@
 
-# !/usr/bin/python
-# -*- coding:utf-8 -*-
+## !/usr/bin/python
+## -*- coding:utf-8 -*-
 import json
+import analysis.AutoClaveStateDetect
 
 load_dict = {}
+load_dict2 = {}
 with open("4XFIN1602902895Y1602943935.json",'r') as load_f:
     load_dict = json.load(load_f)
 
-print(load_dict)
-data = load_dict['data']
-state = data['state']
+with open("rec_templete.json",'rb') as load_f:
+    load_dict2 = json.load(load_f)
+
+load_dict3 = analysis.AutoClaveStateDetect.state_detect(load_dict, load_dict2)
+string = json.dumps(load_dict3,ensure_ascii=False)
+
+with open("4R1602902895.json","w",encoding='utf-8') as f:
+    f.write(string)
+    print("加载入文件完成...")
+
+
 """
 t_min = state[0]['t']
 t_max = 0
@@ -34,6 +44,7 @@ print(state)
 with open("4XFIN1602902895Y1602943935.json","w") as f:
     json.dump(load_dict,f)
     print("加载入文件完成...")
+"""
 """
 load_dict2 = {}
 with open("4R1602902895.json",'r') as load_f:
@@ -71,3 +82,4 @@ string = json.dumps(load_dict2)
 with open("4R1602902895.json","w") as f:
     f.write(string)
     print("加载入文件完成...")
+"""

@@ -120,7 +120,14 @@ class AutoClaveBreakStorage:
         today_folder_path = folder_path + offset_time.date().isoformat() + '/'
         event_prefix = today_folder_path + str(clave_id) + 'XING' + str(int(today_initial)) + 'Y'
         resp = self.obs_client.putContent(bucket_name, event_prefix, str(0))  # 新建今日文件夹
+        if resp.status >= 300:
+            print('OBS putContent:errorCode:', resp.errorCode)
+            print('OBS putContent:errorMessage:', resp.errorMessage)
+        analysis_prefix = today_folder_path + str(clave_id) + 'R' + str(int(today_initial))
 
+        with open("analysis/rec_templete.json", 'r') as load_f:
+            rec_templete = json.load(load_f)
+        resp = self.obs_client.putContent(bucket_name, analysis_prefix, str(rec_templete))  # 新建今日文件夹
         if resp.status >= 300:
             print('OBS putContent:errorCode:', resp.errorCode)
             print('OBS putContent:errorMessage:', resp.errorMessage)

@@ -43,7 +43,7 @@ class AutoClaveDataAnalysis:
         today_record_list = self.__list_object(today_folder_path)
         if len(today_record_list) > 0:  # 有今天的
             time_ing_max = int(today_initial.timestamp())
-            prefix = ''
+            prefix = 'none'
             for content in today_record_list:
                 X_index = content.key.find("X")
 
@@ -55,7 +55,7 @@ class AutoClaveDataAnalysis:
                             time_ing_max = time_ing
                             prefix = content.key
 
-                if len(prefix) > 1:
+                if len(prefix) > 10:
                     resp = self.obs_client.getObject(bucket_name, prefix, downloadPath=None)
                 else:
                     print("AutoClaveDataAnalysis, no today ing event")
