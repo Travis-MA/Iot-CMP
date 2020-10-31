@@ -78,12 +78,12 @@ def auto_clave_data_convert(data_json, obs_client):
         obs_rec_prefix = 'Service/ZyRealTime/clave' + str(clave_id)
         resp = obs_client.deleteObject(bucket_name, obs_rec_prefix)
         if resp.status >= 300:
-            print('OBS DELETE obj: common msg:status:', resp.status, 'prefix ', obs_rec_prefix, ',errorCode:',
+            print('[RealTimeDataPool] OBS DELETE obj: common msg:status:', resp.status, 'prefix ', obs_rec_prefix, ',errorCode:',
                   resp.errorCode, ',errorMessage:', resp.errorMessage)
 
         resp = obs_client.putContent(bucket_name, obs_rec_prefix, str(obs_rec_dict))
         if resp.status >= 300:
-            print('OBS PUT content: common msg:status:', resp.status, 'prefix ', obs_rec_prefix, ',errorCode:',
+            print('[RealTimeDataPool] OBS PUT content: common msg:status:', resp.status, 'prefix ', obs_rec_prefix, ',errorCode:',
                   resp.errorCode, ',errorMessage:', resp.errorMessage)
 
     return np_array

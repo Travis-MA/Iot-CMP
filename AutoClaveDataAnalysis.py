@@ -31,9 +31,9 @@ class AutoClaveDataAnalysis:
             return obj_list
         else:
             # 输出错误码
-            print('OBS listobj:errorCode:', resp.errorCode)
+            print('[AutoClaveDataAnalysis] OBS listobj:errorCode:', resp.errorCode)
             # 输出错误信息
-            print('OBS listobj:errorMessage:', resp.errorMessage)
+            print('[AutoClaveDataAnalysis] OBS listobj:errorMessage:', resp.errorMessage)
 
     def __refresh_analsis(self, clave_id):
         offset_time = self.now - timedelta(hours=hour_offset)  # 减去7个小时的时间（今天上午七点前是昨天）

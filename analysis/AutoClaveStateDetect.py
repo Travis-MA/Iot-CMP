@@ -4,7 +4,6 @@ import json
 
 
 def state_detect(load_dict, load_dict2):
-    print(load_dict)
     data = load_dict['data']
     state = data['state']
 

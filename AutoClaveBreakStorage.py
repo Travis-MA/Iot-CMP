@@ -31,9 +31,9 @@ class AutoClaveBreakStorage:
             return obj_list
         else:
             # 输出错误码
-            print('OBS listobj:errorCode:', resp.errorCode)
+            print('[AutoClaveBreakStorage] OBS listobj:errorCode:', resp.errorCode)
             # 输出错误信息
-            print('OBS listobj:errorMessage:', resp.errorMessage)
+            print('[AutoClaveBreakStorage] OBS listobj:errorMessage:', resp.errorMessage)
 
     # 查找是否有今天的文件夹，如果没有就新建，并且去昨天的找，如果昨天也没有，那么就从7点算起建立新事件
     def __folder_init(self):
@@ -104,18 +104,18 @@ class AutoClaveBreakStorage:
                         new_today_key = today_folder_path + max_prefix[X_index - 1:]
                         resp = self.obs_client.copyObject(bucket_name, max_prefix, bucket_name, new_today_key)
                         if resp.status >= 300:
-                            print('OBS copy obj:errorCode:', resp.errorCode)
-                            print('OBS copy obj:errorMessage:', resp.errorMessage)
+                            print('[AutoClaveBreakStorage] OBS copy obj:errorCode:', resp.errorCode)
+                            print('[AutoClaveBreakStorage] OBS copy obj:errorMessage:', resp.errorMessage)
                         else:
-                            print('Copy Obj: from:'+max_prefix+' to: '+new_today_key)
+                            print('[AutoClaveBreakStorage] New date Start: Copy Obj: from:'+max_prefix+' to: '+new_today_key)
 
                         max_prefix_rec = str(clave_id) + 'R' + max_prefix[X_index + 4:X_index + 14]
                         resp = self.obs_client.copyObject(bucket_name, yestd_folder_path+max_prefix_rec, bucket_name, today_folder_path+max_prefix_rec)
                         if resp.status >= 300:
-                            print('OBS copy obj:errorCode:', resp.errorCode)
-                            print('OBS copy obj:errorMessage:', resp.errorMessage)
+                            print('[AutoClaveBreakStorage] OBS copy obj:errorCode:', resp.errorCode)
+                            print('[AutoClaveBreakStorage] OBS copy obj:errorMessage:', resp.errorMessage)
                         else:
-                            print('Copy Obj: from:' + yestd_folder_path+max_prefix_rec + ' to: ' + today_folder_path+max_prefix_rec)
+                            print('[AutoClaveBreakStorage] New date Start: Copy Analysis Obj: from:' + yestd_folder_path+max_prefix_rec + ' to: ' + today_folder_path+max_prefix_rec)
 
                         latest_event_list.append(time_ing_max)
 
@@ -131,8 +131,8 @@ class AutoClaveBreakStorage:
         event_prefix = today_folder_path + str(clave_id) + 'XING' + str(int(today_initial)) + 'Y'
         resp = self.obs_client.putContent(bucket_name, event_prefix, str(0))  # 新建今日文件夹
         if resp.status >= 300:
-            print('OBS putContent:errorCode:', resp.errorCode)
-            print('OBS putContent:errorMessage:', resp.errorMessage)
+            print('[AutoClaveBreakStorage] OBS putContent:errorCode:', resp.errorCode)
+            print('[AutoClaveBreakStorage] OBS putContent:errorMessage:', resp.errorMessage)
         analysis_prefix = today_folder_path + str(clave_id) + 'R' + str(int(today_initial))
 
         with open("analysis/rec_templete.json", 'rb') as load_f:
@@ -140,8 +140,8 @@ class AutoClaveBreakStorage:
             string = json.dumps(rec_templete, ensure_ascii=False)
         resp = self.obs_client.putContent(bucket_name, analysis_prefix, str(string))  # 新建今日文件夹
         if resp.status >= 300:
-            print('OBS putContent:errorCode:', resp.errorCode)
-            print('OBS putContent:errorMessage:', resp.errorMessage)
+            print('[AutoClaveBreakStorage] OBS putContent:errorCode:', resp.errorCode)
+            print('[AutoClaveBreakStorage] OBS putContent:errorMessage:', resp.errorMessage)
 
     def __data_refresh(self, latest_event_list, today_folder_path):
 
@@ -184,8 +184,8 @@ class AutoClaveBreakStorage:
 
                     end_time = np_data[:, end_index-1][0]
                     record_dict = {'FuId': clave_id,
-                                   'startTime': start_time,
-                                   'endTime': end_time,
+                                   'startTime': int(start_time),
+                                   'endTime': int(end_time),
                                    'stateTime': 1,
                                    'data': {'pressure': in_press_list, 'tempIn': in_temp_list, 'tempOut': out_temp_list,
                                             'state': state_list}}
@@ -202,28 +202,28 @@ class AutoClaveBreakStorage:
                             if resp.status < 300:
                                 resp = self.obs_client.deleteObject(bucket_name, prefix)
                                 if resp.status > 300:
-                                    print('OBS deleteObject:errorCode:', resp.errorCode)
-                                    print('OBS deleteObject:errorMessage:', resp.errorMessage)
+                                    print('[AutoClaveBreakStorage] OBS deleteObject:errorCode:', resp.errorCode)
+                                    print('[AutoClaveBreakStorage] OBS deleteObject:errorMessage:', resp.errorMessage)
                             else:
-                                print('OBS putContent:errorCode:', resp.errorCode)
-                                print('OBS putContent:errorMessage:', resp.errorMessage)
+                                print('[AutoClaveBreakStorage] OBS putContent:errorCode:', resp.errorCode)
+                                print('[AutoClaveBreakStorage] OBS putContent:errorMessage:', resp.errorMessage)
                         else:
-                            print('OBS putContent:errorCode:', resp.errorCode)
-                            print('OBS putContent:errorMessage:', resp.errorMessage)
+                            print('[AutoClaveBreakStorage] OBS putContent:errorCode:', resp.errorCode)
+                            print('[AutoClaveBreakStorage] OBS putContent:errorMessage:', resp.errorMessage)
                     else:
                         resp = self.obs_client.deleteObject(bucket_name, prefix)
                         if resp.status < 300:
                             resp = self.obs_client.putContent(bucket_name, prefix, str(record_json))
                             if resp.status > 300:
-                                print('OBS putContent:errorCode:', resp.errorCode)
-                                print('OBS putContent:errorMessage:', resp.errorMessage)
+                                print('[AutoClaveBreakStorage] OBS putContent:errorCode:', resp.errorCode)
+                                print('[AutoClaveBreakStorage] OBS putContent:errorMessage:', resp.errorMessage)
                         else:
-                            print('OBS deleteObject:errorCode:', resp.errorCode)
-                            print('OBS deleteObject:errorMessage:', resp.errorMessage)
+                            print('[AutoClaveBreakStorage] OBS deleteObject:errorCode:', resp.errorCode)
+                            print('[AutoClaveBreakStorage] OBS deleteObject:errorMessage:', resp.errorMessage)
                 else:
-                    print('Clave:'+str(clave_id)+' has no record, np data is empty')
+                    print('[AutoClaveBreakStorage] Clave:'+str(clave_id)+' has no record, np data is empty')
         else:
-            print("data refresh, latest_event_list != 7")
+            print("[AutoClaveBreakStorage] data refresh, latest_event_list != 7")
             return 0
 
     def break_storage_process(self):
