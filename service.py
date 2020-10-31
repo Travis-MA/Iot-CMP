@@ -1,6 +1,7 @@
 
 # !/usr/bin/python
 # -*- coding:utf-8 -*-
+
 import DataFromDIS
 from RealTimeDataPool import RealTimeDataPool
 from AutoClaveBreakStorage import AutoClaveBreakStorage
@@ -11,6 +12,8 @@ import schedule
 from obs import ObsClient
 from configparser import ConfigParser
 
+
+#version 10/31
 para = 1
 period = 5
 conf_path = 'conf.ini'

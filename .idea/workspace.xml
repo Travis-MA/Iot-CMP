@@ -20,14 +20,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5ca540be-3b91-47d8-9c72-1dbd97325cdc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/other.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Iot-CMP.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Iot-CMP.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AutoClaveBreakStorage.py" beforeDir="false" afterPath="$PROJECT_DIR$/AutoClaveBreakStorage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AutoClaveDataAnalysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/AutoClaveDataAnalysis.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RealTimeDataPool.py" beforeDir="false" afterPath="$PROJECT_DIR$/RealTimeDataPool.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/analysis/AutoClaveStateDetect.py" beforeDir="false" afterPath="$PROJECT_DIR$/analysis/AutoClaveStateDetect.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conf.ini" beforeDir="false" afterPath="$PROJECT_DIR$/conf.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service.py" beforeDir="false" afterPath="$PROJECT_DIR$/service.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -162,7 +154,7 @@
       <workItem from="1603697959656" duration="1135000" />
       <workItem from="1603777412575" duration="11373000" />
       <workItem from="1604044274452" duration="4856000" />
-      <workItem from="1604112900910" duration="15076000" />
+      <workItem from="1604112900910" duration="15134000" />
     </task>
     <servers />
   </component>
