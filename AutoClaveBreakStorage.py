@@ -8,7 +8,7 @@ now = datetime.today()
 confPath = 'conf.ini'
 bucket_name = 'obs-ydy1'
 folder_path = 'Service/ZyRecord/'
-tresh = 0.01
+tresh = 0.03
 padding = 120
 
 

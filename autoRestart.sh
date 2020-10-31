@@ -23,8 +23,7 @@ proc_num
 number=$?
 if [ $number -eq 0 ]                                    # 判断进程是否存在
 then 
-    /home/wkubuntu/named/sbin/named  -c /home/wkubuntu/named/etc/named.conf -n 1 &
-                                                        # 重启进程的命令，请相应修改
+    nohup python3 /home/Iot-CMP/service.py &        # 重启进程
     proc_id                                         # 获取新进程号
     echo ${pid}, `date` >> $file_name      # 将新进程号和重启时间记录
 fi

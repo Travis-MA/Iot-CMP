@@ -24,8 +24,7 @@
       <change beforePath="$PROJECT_DIR$/AutoClaveBreakStorage.py" beforeDir="false" afterPath="$PROJECT_DIR$/AutoClaveBreakStorage.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AutoClaveDataAnalysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/AutoClaveDataAnalysis.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RealTimeDataPool.py" beforeDir="false" afterPath="$PROJECT_DIR$/RealTimeDataPool.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/analysis/AutoClaveStateDetect.py" beforeDir="false" afterPath="$PROJECT_DIR$/analysis/AutoClaveStateDetect.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/autoRestart.sh" beforeDir="false" afterPath="$PROJECT_DIR$/autoRestart.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,7 +158,7 @@
       <workItem from="1603697959656" duration="1135000" />
       <workItem from="1603777412575" duration="11373000" />
       <workItem from="1604044274452" duration="4856000" />
-      <workItem from="1604112900910" duration="18833000" />
+      <workItem from="1604112900910" duration="19628000" />
     </task>
     <servers />
   </component>

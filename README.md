@@ -11,5 +11,6 @@ V1.1 蒸压釜设备应用开发完成 2020-10-31
 
 服务器运行：
 1, nohup : nohup python3 server.py &
+
 2, crontab: crontab -e */9 * * * * /home/Iot-CMP/autoRestart.sh
 
