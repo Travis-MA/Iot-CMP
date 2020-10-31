@@ -1,7 +1,5 @@
 #!/bin/sh
 
-. /etc/profile
-. ~/.bash_profile
 
 host_dir=`echo ~`                                       # 当前用户根目录
 proc_name="/home/Iot-CMP/service.py"                             # 进程名

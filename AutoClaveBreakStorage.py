@@ -177,7 +177,7 @@ class AutoClaveBreakStorage:
                         state_list.append({'t': time, 'v': np_data[:, end_index][4]})
                         end_index = end_index + 1
 
-                        safe = end_index < np_data.shape[1]
+                        safe = end_index < np_data.shape[1]-1
                         interval_1 = end_index < start_index + 2 * padding
                         interval_2 = not interval_1 and np_data[:, end_index][3] >= tresh
                         interval_3 = not (interval_1 or interval_2) and end_index < np_data.shape[1] - padding
