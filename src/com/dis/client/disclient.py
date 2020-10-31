@@ -16,7 +16,7 @@ from src.com.dis.response import disrecordresponse
 from src.com.dis.response import discheckpointresponse
 from src.com.dis.models.disexception import DisException
 from src.com.dis.models.base_model import IS_PYTHON2,IS_PYTHON35_UP,BASESTRING,IS_WINDOWS
-
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
 DEFAULT_QUERY_RETRY_COUNT = 10
