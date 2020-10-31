@@ -13,7 +13,7 @@ def state_detect(load_dict, load_dict2):
 
     index_cnt = 0
     state_cnt = -1
-    state_name_list = ["釜门开", "釜门关", "排空", "预养", "从邻釜导气", "从隔釜导气", "升压", "恒压", "降压", "导气到邻釜", "导气到隔釜", "排除余气", "压力归零"]
+    state_name_list = ["开门", "关门", "预养进气开", "邻釜导进开", "邻釜导进停", "隔釜导进开", "升压开", "隔釜导进停", "隔釜导出开", "预养出气开", "邻釜导出开", "排空开"]
     pre_state = {
         "state_id" : -1,
         "endInPress" : data['pressure'][0]["v"],

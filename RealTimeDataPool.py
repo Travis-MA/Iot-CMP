@@ -41,31 +41,35 @@ def auto_clave_data_convert(data_json, obs_client):
 
         for devRec in data_json:
             data = json.loads(devRec['data'])
-            if data['device_id'] == dev_id:
-                services = data['services'][0]
-                properties = services['properties']
-                try:
+            try:
+                device_id = data['notify_data']['header']['device_id']
+                if device_id == dev_id:
 
-                    time = datetime.strptime(services['event_time'], '%Y%m%dT%H%M%SZ').timestamp() + 3600 * 8
-                    in_temp = float(properties[in_temp_channel]) * float(in_temp_slope) + float(in_temp_shift)
-                    out_temp = float(properties[out_temp_channel]) * float(out_temp_slope) + float(out_temp_shift)
-                    in_press = float(properties[in_press_channel]) * float(in_press_slope) + float(in_press_shift)
-                    state = properties[state_channel]
+                    services = data['notify_data']['body']['services'][0]
+                    properties = services['properties']
+                    try:
+                        time = datetime.strptime(services['event_time'], '%Y%m%dT%H%M%SZ').timestamp() + 3600 * 8
+                        in_temp = float(properties[in_temp_channel]) * float(in_temp_slope) + float(in_temp_shift)
+                        out_temp = float(properties[out_temp_channel]) * float(out_temp_slope) + float(out_temp_shift)
+                        in_press = float(properties[in_press_channel]) * float(in_press_slope) + float(in_press_shift)
+                        state = properties[state_channel]
 
-                    time_list.append(time)
-                    in_temp_list.append(in_temp)
-                    out_temp_list.append(out_temp)
-                    in_press_list.append(in_press)
-                    state_list.append(state)
 
-                    rec_dict = {'time': time, 'inTemp': in_temp,
-                                'outTemp': out_temp, 'inPress': in_press,
-                                'state': state}
+                        time_list.append(time)
+                        in_temp_list.append(in_temp)
+                        out_temp_list.append(out_temp)
+                        in_press_list.append(in_press)
+                        state_list.append(state)
 
-                    record_dict.append(rec_dict)
+                        rec_dict = {'time': time, 'inTemp': in_temp,
+                                    'outTemp': out_temp, 'inPress': in_press,
+                                    'state': state}
 
-                except:
-                    pass
+                        record_dict.append(rec_dict)
+                    except:
+                        pass
+            except:
+                pass
 
         data_set_np = np.array([time_list, in_temp_list, out_temp_list, in_press_list, state_list])
         np_array.append(data_set_np)
